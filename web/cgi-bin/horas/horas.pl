@@ -1063,7 +1063,8 @@ sub martyrologium : ScriptFunc {
         my $prefix = "v. ";
         foreach $line (@a)
         {
-            if ( length($line) > 3 )
+            $line =~ s/(\([^)]*\))/setfont($redfont,$1)/ge;
+            if ( length($line) > 3 && !($line =~ /(\([^)]*\))/) )
             {
                 $t .= "$prefix$line\n";
             }
